@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import User from "../models/user.model.js";
 import { sendWelcomeEmail } from "../emails/emailHandlers.js";
+import User from "../models/user.model.js";
 
 export const signup = async (req, res) => {
   try {
@@ -101,4 +101,13 @@ export const login = async (req, res) => {
 export const logout = (req, res) => {
   res.clearCookie("jwt-linkedin");
   res.json({ message: "Logged out successfully" });
+};
+
+export const getCurrentUser = async (req, res) => {
+  try {
+    res.json(req.user);
+  } catch (error) {
+    console.error("Error in getCurrentUser controller:", error);
+    res.status(500).json({ message: "Server error" });
+  }
 };
