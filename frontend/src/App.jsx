@@ -1,12 +1,13 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 
+import { useQuery } from "@tanstack/react-query";
+import toast, { Toaster } from "react-hot-toast";
+import { axiosInstance } from "./lib/axios";
 import HomePage from "./pages/HomePage";
+import NotificationsPage from "./pages/NotificationsPage";
 import LoginPage from "./pages/auth/LoginPage";
 import SignUpPage from "./pages/auth/SignUpPage";
-import toast, { Toaster } from "react-hot-toast";
-import { useQuery } from "@tanstack/react-query";
-import { axiosInstance } from "./lib/axios";
 
 function App() {
   const { data: authUser, isLoading } = useQuery({
@@ -40,6 +41,12 @@ function App() {
         <Route
           path="/login"
           element={!authUser ? <LoginPage /> : <Navigate to={"/"} />}
+        />
+        <Route
+          path="/notifications"
+          element={
+            authUser ? <NotificationsPage /> : <Navigate to={"/login"} />
+          }
         />
       </Routes>
       <Toaster />
