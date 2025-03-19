@@ -30,3 +30,6 @@ npm run build
 ```shell
 npm run start
 ```
+
+## 🌍 Live Demo  
+[![Deploy](https://img.shields.io/static/v1?label=LIVE&message=Click%20Here&color=brightgreen&style=for-the-badge)](https://linkedin-clone-6dc2.onrender.com)
